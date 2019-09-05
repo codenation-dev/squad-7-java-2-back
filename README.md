@@ -1,7 +1,8 @@
 # squad-7-java-2
 
 ## Utilize a branch develop para o desenvolvimento
-
+# Utlizar padrão Git flow
+---
 ## Build da aplicação
 
 Instruções para compilar e rodar
