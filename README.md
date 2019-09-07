@@ -7,12 +7,12 @@
 
 ----
 
-## Utilize a branch develop para o desenvolvimento
-
-
-## Utilize a branch develop para o desenvolvimento
 # Utlizar padrão Git flow
+
+1. Utilize a branch develop para o desenvolvimento
+
 ---
+
 ## Build da aplicação
 
 Instruções para compilar e rodar
