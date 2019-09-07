@@ -1,5 +1,12 @@
 # squad-7-java-2
 
+---
+# DER
+
+![Alt text](centralerros.png?raw=true "DER - Central Erros")
+
+----
+
 ## Utilize a branch develop para o desenvolvimento
 # Utlizar padrão Git flow
 ---
