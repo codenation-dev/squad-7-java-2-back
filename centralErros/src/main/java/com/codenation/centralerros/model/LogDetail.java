@@ -2,7 +2,9 @@ package com.codenation.centralerros.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,8 @@ public class LogDetail {
 	
 	private String detail;
 	
+	@Enumerated
+    @Column(columnDefinition = "smallint")
 	private Level level;
 	
 	private Boolean archived;
@@ -102,7 +106,5 @@ public class LogDetail {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-	
-	
 
 }
