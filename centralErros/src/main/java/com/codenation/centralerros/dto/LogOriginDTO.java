@@ -1,3 +1,4 @@
+
 package com.codenation.centralerros.dto;
 
 public class LogOriginDTO {
@@ -61,4 +62,5 @@ public class LogOriginDTO {
 		this.createdDate = createdDate;
 	}
 	
+
 }
