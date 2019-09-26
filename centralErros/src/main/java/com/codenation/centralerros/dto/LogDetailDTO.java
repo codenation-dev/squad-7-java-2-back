@@ -27,6 +27,14 @@ public class LogDetailDTO {
 	private LocalDateTime createdDate;
 	private LocalDateTime createdBy;
 
+	public LogDetailDTO(LogDetail logDetail) {
+		title = logDetail.getTitle();
+		detail = logDetail.getDetail();
+		level = logDetail.getLevel().toString();
+		archived = logDetail.getArchived();
+		timeEvent = logDetail.getTimeEvent();
+	}
+
 	public LogDetail toLogDetail() {
 		return LogDetail.builder()
 				.archived( archived )

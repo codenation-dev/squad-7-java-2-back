@@ -23,24 +23,21 @@ public class LogDetailService {
 	}
 
 	public List<LogDetailDTO> findAll() {
-		return null;
-//		return logDetailRepository.findAll().stream()
-//				.map( LogDetailDTO::new )
-//				.collect( Collectors.toList() );
+		return logDetailRepository.findAll().stream()
+				.map( LogDetailDTO::new )
+				.collect( Collectors.toList() );
 	}
 
 	public LogDetailDTO findById(Long id) {
-		return null;
-//		return logDetailRepository.findById( id )
-//				.map( LogDetailDTO::new )
-//				.orElse( null );
+		return logDetailRepository.findById( id )
+				.map( LogDetailDTO::new )
+				.orElse( null );
 	}
 
 	public List<LogDetailDTO> findByOriginEnvironment(Environment environment) {
-		return null;
-//		return logDetailRepository.findByOriginEnvironment( environment ).stream()
-//				.map( LogDetailDTO::new )
-//				.collect( Collectors.toList() );
+		return logDetailRepository.findByOriginEnvironment( environment ).stream()
+				.map( LogDetailDTO::new )
+				.collect( Collectors.toList() );
 	}
 
 	public void validateLog(LogDetailDTO logDetailDTO) {
