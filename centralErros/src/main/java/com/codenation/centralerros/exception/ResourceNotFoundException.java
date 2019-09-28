@@ -1,4 +1,4 @@
-package com.codenation.centralerros.controller.advice;
+package com.codenation.centralerros.exception;
 
 public class ResourceNotFoundException extends RuntimeException{
 
