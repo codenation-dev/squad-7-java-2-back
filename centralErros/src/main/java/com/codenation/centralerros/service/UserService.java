@@ -1,6 +1,7 @@
 package com.codenation.centralerros.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,5 +25,14 @@ public class UserService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username)  {
 		User user = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException(username));
 		return new UserDetailsDTO(user);
+	}
+	
+	public static UserDetailsDTO authenticated() {
+		try {
+			return (UserDetailsDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		}
+		catch (Exception e) {
+			return null;
+		}
 	}
 }

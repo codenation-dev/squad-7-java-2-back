@@ -40,7 +40,7 @@ public class SegurancaConfiguration extends WebSecurityConfigurerAdapter {
     
 	private static final String[] PUBLIC_MATCHERS_GET = {
 			"/user",
-            "/swagger-ui.html",
+			"/auth/forgot",
 	};
 	
 	

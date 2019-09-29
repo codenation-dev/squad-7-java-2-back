@@ -34,4 +34,5 @@ public class CentralErrosApplication {
 		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 		return bean;
 	}
+
 }
