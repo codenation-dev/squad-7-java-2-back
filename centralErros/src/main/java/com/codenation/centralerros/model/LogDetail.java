@@ -4,14 +4,23 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
+
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+
+import com.codenation.centralerros.model.enums.Level;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +29,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class LogDetail {
@@ -27,20 +37,26 @@ public class LogDetail {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Size(max = 255)
 	private String title;
 	
+	@Size(max = 500)
 	private String detail;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
     @Column(columnDefinition = "smallint")
 	private Level level;
 	
 	private Boolean archived;
 	
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime timeEvent;
 	
+    @CreatedDate
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime createdDate;
 	
+    @CreatedBy
 	private String createdBy;
 	
 	@ManyToOne

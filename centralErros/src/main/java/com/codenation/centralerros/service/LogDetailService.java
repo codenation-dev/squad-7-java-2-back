@@ -4,11 +4,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.codenation.centralerros.dto.LogDetailDTO;
+import com.codenation.centralerros.dto.LogDetailPesquisaDTO;
 import com.codenation.centralerros.exception.InvalidLogDetailException;
-import com.codenation.centralerros.model.Environment;
+import com.codenation.centralerros.model.LogDetail;
+import com.codenation.centralerros.model.enums.Environment;
 import com.codenation.centralerros.repository.LogDetailRepository;
 
 @Service
@@ -28,6 +33,30 @@ public class LogDetailService {
 				.collect( Collectors.toList() );
 	}
 
+	
+	
+	public Page<LogDetailDTO> pesquisaLogDetailAvancada(LogDetailPesquisaDTO dto,int page, int size) {
+
+		   PageRequest pageRequest = PageRequest.of(
+	                page,
+	                size,
+	                Sort.Direction.ASC,
+	                "title");
+		   
+		Page<LogDetail> filter = null;
+		if( dto != null) {
+			  filter = this.logDetailRepository.pesquisaLogDetailAvancada(
+					    dto.getTitle()
+					  , dto.getDetail()
+					  , dto.getLevel()
+					  , dto.getArchived()
+					  , pageRequest);
+		} else {
+			filter = this.logDetailRepository.findAll(pageRequest);
+		}
+		return filter.map(e -> new LogDetailDTO(e));
+	}
+	
 	public LogDetailDTO findById(Long id) {
 		return logDetailRepository.findById( id )
 				.map( LogDetailDTO::new )
@@ -49,4 +78,8 @@ public class LogDetailService {
 			throw new InvalidLogDetailException();
 		}
 	}
+	
+	
+	
+	
 }

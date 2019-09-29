@@ -1,15 +1,14 @@
 package com.codenation.centralerros.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
+import com.codenation.centralerros.model.LogDetail;
+import com.codenation.centralerros.model.enums.Level;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import com.codenation.centralerros.model.Level;
-import com.codenation.centralerros.model.LogDetail;
 
 @Getter
 @Setter
