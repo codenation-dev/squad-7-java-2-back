@@ -21,7 +21,7 @@ public interface LogDetailRepository extends JpaRepository<LogDetail, Long>{
 	@Query("SELECT d FROM LogDetail d where "
 			+ " ( coalesce(:title, null) is null or UPPER(d.title) LIKE %:title% ) "
 			+ " and ( coalesce(:detail, null) is null or UPPER(d.detail) LIKE %:detail% ) "
-			+ " and ( coalesce(:level, null) is null or d.level = %:level% ) "
+			//+ " and ( coalesce(:level, null) is null or d.level = %:level% ) "
 			+ " and ( coalesce(:archived, null) is null or d.archived = :archived ) ")
 	Page<LogDetail> pesquisaLogDetailAvancada(
 			  @Param("title") @Nullable String title
