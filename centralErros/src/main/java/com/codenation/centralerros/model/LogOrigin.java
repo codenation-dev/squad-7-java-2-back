@@ -46,7 +46,6 @@ public class LogOrigin {
 	private String name;
 	
 	@Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "smallint")
 	private Environment environment;
 	
     @CreatedDate
