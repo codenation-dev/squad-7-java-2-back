@@ -44,7 +44,6 @@ public class LogDetail {
 	private String detail;
 	
 	@Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "smallint")
 	private Level level;
 	
 	private Boolean archived;
