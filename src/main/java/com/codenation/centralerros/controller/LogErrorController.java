@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.codenation.centralerros.dto.LogDetailDTO;
-import com.codenation.centralerros.dto.LogDetailPesquisaDTO;
+import com.codenation.centralerros.dto.LogErrorDTO;
+import com.codenation.centralerros.dto.LogErrorPesquisaDTO;
 import com.codenation.centralerros.model.enums.Environment;
-import com.codenation.centralerros.service.LogDetailService;
+import com.codenation.centralerros.service.LogErrorService;
 
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -30,23 +30,23 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/log")
 @AllArgsConstructor
 @Api(value = "central de erros")
-public class LogDetailController {
+public class LogErrorController {
 
 	@Autowired
-	private LogDetailService logDetailService;
+	private LogErrorService logErrorService;
 
 	@PostMapping
-	public void save(@Valid @RequestBody LogDetailDTO logDetail) {
-		logDetailService.save( logDetail );
+	public void save(@Valid @RequestBody LogErrorDTO logError) {
+		logErrorService.save( logError );
 	}
 
 	@GetMapping()
-	public List<LogDetailDTO> findAll() {
-		return logDetailService.findAll();
+	public List<LogErrorDTO> findAll() {
+		return logErrorService.findAll();
 	}
 	
 	@GetMapping(value = "filter")
-	public Page<LogDetailDTO> findAll(LogDetailPesquisaDTO dto,
+	public Page<LogErrorDTO> findAll(LogErrorPesquisaDTO dto,
 			  @RequestParam(
 	                    value = "page",
 	                    required = false,
@@ -55,17 +55,17 @@ public class LogDetailController {
 	                    value = "size",
 	                    required = false,
 	                    defaultValue = "10") int size) {
-		return logDetailService.pesquisaLogDetailAvancada(dto,page,size);
+		return logErrorService.pesquisaLogAvancada(dto, page, size);
 		
 	}
 
 	@GetMapping("/{id}")
-	public LogDetailDTO findById(@PathVariable("id") Long id) {
-		return logDetailService.findById( id );
+	public LogErrorDTO findById(@PathVariable("id") Long id) {
+		return logErrorService.findById( id );
 	}
 
 	@GetMapping(value = "/environment")
-	public List<LogDetailDTO> findByEnvironment(Environment environment) {
-		return logDetailService.findByOriginEnvironment( environment );
+	public List<LogErrorDTO> findByEnvironment(Environment environment) {
+		return logErrorService.findByEnvironment( environment );
 	}
 }

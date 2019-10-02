@@ -4,19 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LogDetailPesquisaDTO {
+public class LogErrorPesquisaDTO {
 
-	private String title;
+	private String ip;
 	private String detail;
 	private String level;
-
+	private String environment;
 	private Boolean archived;
 
-	public String getTitle() {
-		return  title == null ? null : title.toUpperCase();
+	public String getEnvironment() {
+		return  environment == null ? null : environment.toUpperCase();
 	}
 
 	public String getDetail() {
@@ -27,6 +28,9 @@ public class LogDetailPesquisaDTO {
 		return level== null ? null : level.toUpperCase();
 	}
 
+	public String getIp() {
+		return ip== null ? null : ip.toUpperCase();
+	}
 	
 	public Boolean getArchived() {
 		return archived;
