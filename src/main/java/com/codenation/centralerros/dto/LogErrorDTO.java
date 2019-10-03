@@ -8,27 +8,34 @@ import com.codenation.centralerros.model.LogError;
 import com.codenation.centralerros.model.enums.Environment;
 import com.codenation.centralerros.model.enums.Level;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@ApiModel(description="Detalhes sobre os dados do log.")
 public class LogErrorDTO {
 
     private Long id;
 	
+    @ApiModelProperty(notes="O Título é obrigatório")
 	@NotNull(message="O Título é obrigatório")
 	private String title;
 	
+    @ApiModelProperty(notes="A descrição do log é obrigatório")
 	@NotNull(message="A descrição do log é obrigatório")
 	private String detail;
-	
+
+    @ApiModelProperty(value = "Environment da aplicação", allowableValues = "DEVELOPMENT,PRODUCTION,TEST",notes="O Environment é obrigatório")
 	@NotNull(message="O Environment é obrigatório")
 	private String environment;
 	
+
+    @ApiModelProperty(value = "Level do error", allowableValues = "DEBUG,ERROR,WARNING",notes="O Level é obrigatório")
 	@NotNull(message="O Level é obrigatório")
 	private String level;
 	
@@ -36,6 +43,7 @@ public class LogErrorDTO {
 	
 	private Boolean archived;
 	
+	@ApiModelProperty(notes="Ip é obrigatório")
 	@NotNull(message="Ip é obrigatório")
 	private String ip;
 
