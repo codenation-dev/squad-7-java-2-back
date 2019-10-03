@@ -25,7 +25,8 @@ public class SegurancaConfiguration extends WebSecurityConfigurerAdapter {
     private UserDetailsService userService;
 
 	private static final String[] PUBLIC_MATCHERS = {
-			"/h2-console/**"
+			"/h2-console/**",
+			"/log/**"
 	};
 	
 	private static final String[] PUBLIC_MATCHERS_SWAGGER = {

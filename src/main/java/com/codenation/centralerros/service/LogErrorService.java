@@ -21,9 +21,9 @@ public class LogErrorService {
 	@Autowired
 	private LogErrorRepository logErrorRepository;
 
-	public void save(LogErrorDTO logErrorDTO) {
-		//validateLog( logErrorDTO );
-		logErrorRepository.save( logErrorDTO.toLogError() );
+	public LogErrorDTO save(LogErrorDTO logErrorDTO) {
+		return new LogErrorDTO(logErrorRepository.save( logErrorDTO.toLogError()));
+		
 	}
 
 	public List<LogErrorDTO> findAll() {
