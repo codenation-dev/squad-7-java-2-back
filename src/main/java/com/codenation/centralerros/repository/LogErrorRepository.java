@@ -18,7 +18,7 @@ public interface LogErrorRepository extends JpaRepository<LogError, Long>{
 	List<LogError> findByEnvironment(Environment env);
 	
 	@Transactional(readOnly=true)
-	@Query("SELECT d FROM LogError d where "
+	@Query("SELECT d FROM LogError d where d.archived = false and "
 			+ " ( coalesce(:ip, null) is null or UPPER(d.ip) LIKE %:ip% ) "
 			+ " and ( coalesce(:detail, null) is null or UPPER(d.detail) LIKE %:detail% ) "
 			+ " and ( coalesce(:level, null) is null or UPPER(d.level) LIKE %:level% ) "
