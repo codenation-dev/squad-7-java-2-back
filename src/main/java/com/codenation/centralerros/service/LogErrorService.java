@@ -14,6 +14,7 @@ import com.codenation.centralerros.dto.LogErrorPesquisaDTO;
 import com.codenation.centralerros.dto.PageDTO;
 import com.codenation.centralerros.model.LogError;
 import com.codenation.centralerros.model.enums.Environment;
+import com.codenation.centralerros.model.enums.Level;
 import com.codenation.centralerros.model.enums.TipoOrdenacao;
 import com.codenation.centralerros.repository.LogErrorRepository;
 
@@ -51,8 +52,17 @@ public class LogErrorService {
 		Page<LogError> filter = null;
 
 		if (dto != null) {
-			filter = this.logErrorRepository.pesquisaLogErrorAvancada(dto.getIp(), dto.getDetail(), dto.getLevel(),
-					dto.getEnvironment(), pageRequest);
+			Level level = null;
+			Environment ambiente = null;
+			
+			if(dto.getEnvironment() != null) {
+				ambiente = Environment.valueOf(dto.getEnvironment());
+			}
+			if(dto.getLevel() != null) {
+				level = Level.valueOf(dto.getLevel());
+			}
+			filter = this.logErrorRepository.pesquisaLogErrorAvancada(dto.getIp(), dto.getDetail(),level,
+					ambiente, pageRequest);
 		} else {
 			filter = this.logErrorRepository.findAll(pageRequest);
 		}
