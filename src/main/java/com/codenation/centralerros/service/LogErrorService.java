@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.codenation.centralerros.dto.LogErrorDTO;
 import com.codenation.centralerros.dto.LogErrorPesquisaDTO;
+import com.codenation.centralerros.dto.PageDTO;
 import com.codenation.centralerros.model.LogError;
 import com.codenation.centralerros.model.enums.Environment;
+import com.codenation.centralerros.model.enums.TipoOrdenacao;
 import com.codenation.centralerros.repository.LogErrorRepository;
 
 @Service
@@ -22,61 +24,60 @@ public class LogErrorService {
 	private LogErrorRepository logErrorRepository;
 
 	public LogErrorDTO save(LogErrorDTO logErrorDTO) {
-		return new LogErrorDTO(logErrorRepository.save( logErrorDTO.toLogError()));
-		
+		return new LogErrorDTO(logErrorRepository.save(logErrorDTO.toLogError()));
+	}
+
+	public void delete(Long id) {
+		logErrorRepository.deleteById(id);
 	}
 
 	public List<LogErrorDTO> findAll() {
-		return logErrorRepository.findAll().stream()
-				.map( LogErrorDTO::new )
-				.collect( Collectors.toList() );
+		return logErrorRepository.findAll().stream().map(LogErrorDTO::new).collect(Collectors.toList());
 	}
-	
-	public Page<LogErrorDTO> pesquisaLogAvancada(LogErrorPesquisaDTO dto,int page, int size) {
 
-		   PageRequest pageRequest = PageRequest.of(
-	                page,
-	                size,
-	                Sort.Direction.ASC,
-	                "title");
-		   
+	public Page<LogErrorDTO> pesquisaLogAvancada(LogErrorPesquisaDTO dto, PageDTO page) {
+
+		Sort sort = null;
+		if (page.getPageOrderBy() != null) {
+			if (page.getPageDirection() == TipoOrdenacao.DESC) {
+				sort = Sort.by(page.getPageOrderBy().toLowerCase()).descending();
+			} else {
+				sort = Sort.by(page.getPageOrderBy().toLowerCase()).ascending();
+			}
+
+		}
+		PageRequest pageRequest = PageRequest.of(page.getPageNumber(), page.getPageSize(), sort);
+
 		Page<LogError> filter = null;
-		
-		if( dto != null) {
-			  filter = this.logErrorRepository.pesquisaLogErrorAvancada(
-					    dto.getIp()
-					  , dto.getDetail()
-					  , dto.getLevel()
-					  , dto.getEnvironment()
-					  , pageRequest);
+
+		if (dto != null) {
+			filter = this.logErrorRepository.pesquisaLogErrorAvancada(dto.getIp(), dto.getDetail(), dto.getLevel(),
+					dto.getEnvironment(), pageRequest);
 		} else {
 			filter = this.logErrorRepository.findAll(pageRequest);
 		}
 		return filter.map(e -> new LogErrorDTO(e));
 	}
-	
+
 	public LogErrorDTO findById(Long id) {
-		return logErrorRepository.findById( id )
-				.map( LogErrorDTO::new )
-				.orElse( null );
+		return logErrorRepository.findById(id).map(LogErrorDTO::new).orElse(null);
 	}
 
 	public List<LogErrorDTO> findByEnvironment(Environment environment) {
-		return logErrorRepository.findByEnvironment( environment ).stream()
-				.map( LogErrorDTO::new )
-				.collect( Collectors.toList() );
+		return logErrorRepository.findByEnvironment(environment).stream().map(LogErrorDTO::new)
+				.collect(Collectors.toList());
 	}
 
-	/*public void validateLog(LogErrorDTO logErrorDTO) {
-		if (logErrorDTO.getDetail().isEmpty() || logErrorDTO.getDetail() == null ||
-				logErrorDTO.getLevel().isEmpty() || logErrorDTO.getLevel() == null ||
-				logErrorDTO.getTimeEvent() == null ||
-				logErrorDTO.getTitle().isEmpty() || logErrorDTO.getTitle() == null ||
-				( logErrorDTO.getLogOrigin() != null || 
-				logErrorDTO.getLogOrigin().getEnvironment() == null ||
-				logErrorDTO.getLogOrigin().getName().isEmpty() || logErrorDTO.getLogOrigin().getName() == null )) {
-			throw new InvalidLogDetailException();
-		}
-	}*/
-	
+	/*
+	 * public void validateLog(LogErrorDTO logErrorDTO) { if
+	 * (logErrorDTO.getDetail().isEmpty() || logErrorDTO.getDetail() == null ||
+	 * logErrorDTO.getLevel().isEmpty() || logErrorDTO.getLevel() == null ||
+	 * logErrorDTO.getTimeEvent() == null || logErrorDTO.getTitle().isEmpty() ||
+	 * logErrorDTO.getTitle() == null || ( logErrorDTO.getLogOrigin() != null ||
+	 * logErrorDTO.getLogOrigin().getEnvironment() == null ||
+	 * logErrorDTO.getLogOrigin().getName().isEmpty() ||
+	 * logErrorDTO.getLogOrigin().getName() == null )) { throw new
+	 * InvalidLogDetailException(); } }
+	 */
+
 }
