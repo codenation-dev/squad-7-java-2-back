@@ -3,7 +3,7 @@
 ---
 # Arquitetura - Central de Erros
 
-![Alt text](arquitetura.PNG?raw=true "Arquitetura - Central de Erros")
+![Alt text](Arquitetura.PNG?raw=true "Arquitetura - Central de Erros")
 
 ----
 
