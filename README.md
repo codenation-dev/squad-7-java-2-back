@@ -1,9 +1,9 @@
 # squad-7-java-2
 
 ---
-# DER
+# Arquitetura - Central de Erros
 
-![Alt text](centralerros.png?raw=true "DER - Central Erros")
+![Alt text](arquitetura.png?raw=true "Arquitetura - Central de Erros")
 
 ----
 
