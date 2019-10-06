@@ -14,16 +14,17 @@
 
 # Central de Erro - Repositórios/Api 
 
-A api do sistema pode se consumida através do endereço:
+A api do sistema pode se consumida através do endereço abaixo:
 - [Swagger](https://central-erros-squad7.herokuapp.com/swagger-ui.html)
+
+Os repositórios de backend/frontend através dos endereços abaixo:
+
 - [Backend](https://github.com/codenation-dev/squad-7-java-2-back)
 - [Website](https://github.com/codenation-dev/squad-7-java-2-front)
+
+O Sistema (Frontend) pode ser acessado através do enderço abaixo:
+
 - [Central-Erros](https://central-erros-squad7.azurewebsites.net)
-
-
-
-* [![Build status](https://dashboard.heroku.com/apps/central-erros-squad7/activity/builds/0234ca76-a4cc-450d-9841-76ed2ccec7ad)] 
-
 
 # Utlizar padrão Git flow
 
