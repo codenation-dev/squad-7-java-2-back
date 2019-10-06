@@ -8,7 +8,7 @@
 ----
 
 # Telas - Central de Erros
-![Alt text](sistema.png?raw=true "Arquitetura - Central de Erros")
+![Alt text](sistema.png?raw=true "Telas do sistema Central de Erros")
 
 ----
 
