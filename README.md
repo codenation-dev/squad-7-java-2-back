@@ -7,6 +7,11 @@
 
 ----
 
+# Telas - Central de Erros
+![Alt text](ssitema.png?raw=true "Arquitetura - Central de Erros")
+
+----
+
 # Utlizar padrão Git flow
 
 1. Utilize a branch develop para o desenvolvimento
